@@ -47,7 +47,7 @@ export const SOCIAL_LINKS = [
   { href: CONTACT.socialUrl, label: `${SITE.name} on X`, icon: "twitter" },
   { href: SITE.repositoryUrl, label: `${SITE.name} on GitHub`, icon: "github" },
   { href: `mailto:${CONTACT.email}`, label: "Email", icon: "mail" },
-  { href: CONTACT.socialUrl, label: "Instagram", icon: "brand-instagram" }
+  { href: CONTACT.socialUrl, label: "Instagram", icon: "instagram" }
 ];
 
 export const authors = [
