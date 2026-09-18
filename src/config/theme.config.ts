@@ -7,7 +7,7 @@ const siteUrl = (
 export const SITE = {
   name: "Chapter Chats with Caroline",
   description:
-    "An independent magazine on writing, design, and the slow web. Published occasionally, read closely.",
+    "An book review blog, which I review all the book I read one chapter at a time.",
   url: siteUrl,
   locale: "en-US",
   language: "en",
@@ -16,13 +16,13 @@ export const SITE = {
 
 export const NAVIGATION = [
   { to: "/", label: "Home" },
-  { to: "/blog", label: "Writing" },
+  { to: "/blog", label: "Blog" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
 
 export const CONTACT = {
-  email: "hello@example.com",
+  email: "chapterchatswithcaroline@yahoo.com",
   socialHandle: "@quietpages",
   socialUrl: "https://x.com/quietpages",
 };
@@ -72,6 +72,14 @@ export const authors = [
       "Mira's work sits at the intersection of place, memory, and the everyday object. Her essays have appeared in a number of small but loved publications.",
     avatar: "/avatars/mira-iwasaki.svg",
   },
+  {
+    slug: "caroline-dcruz",
+    name: "Caroline Dcruz",
+    bio: "An book reviewer, reviewing every book I read one chapter at a time",
+    longBio:
+      "Caroline reviews and recommendations books that she reads and gives you valuable insights on them",
+    avatar: "/avatars/caroline-dcruz.svg",
+  }
 ];
 
 export const categories = [
