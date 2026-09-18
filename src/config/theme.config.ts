@@ -26,7 +26,6 @@ export const CONTACT = {
   socialHandle: "@chapterchatswithcaroline",
   socialUrl: "https://x.com/quietpages",
   socialUrl: "https://www.instagram.com/chapterchatswithcaroline"
-  
 };
 
 export const FORMS = {
