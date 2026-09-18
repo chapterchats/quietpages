@@ -5,7 +5,7 @@ const siteUrl = (
 ).replace(/\/$/, "");
 
 export const SITE = {
-  name: "Quiet Pages",
+  name: "Chapter Chats with Caroline",
   description:
     "An independent magazine on writing, design, and the slow web. Published occasionally, read closely.",
   url: siteUrl,
