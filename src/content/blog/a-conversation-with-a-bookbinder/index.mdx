@@ -18,26 +18,18 @@ imageCredit:
 ---
 import BookActions from '../../../components/BookActions.astro';
 
-<div class="not-prose my-8 p-6 bg-zinc-50 border border-zinc-200/60 rounded-lg max-w-xl mx-auto">
-  <div class="grid grid-cols-3 gap-y-3 text-sm">
-    <div class="font-medium text-zinc-400 uppercase tracking-wider text-xs">Book Title</div>
-    <div class="col-span-2 text-zinc-800 font-semibold">Annie Bot</div>
-
-    <div class="font-medium text-zinc-400 uppercase tracking-wider text-xs">Author</div>
-    <div class="col-span-2 text-zinc-800 font-medium">Caroline</div>
-
-    <div class="font-medium text-zinc-400 uppercase tracking-wider text-xs">Pages</div>
-    <div class="col-span-2 text-zinc-600">200 pages</div>
-
-    <div class="font-medium text-zinc-400 uppercase tracking-wider text-xs">Genres</div>
-    <div class="col-span-2 text-zinc-600">Fantasy, Sci-fi</div>
-  </div>
+<div class="not-prose border-l-4 border-zinc-400 pl-6 my-8 max-w-xl mx-auto">
+  <ul class="space-y-2 text-base text-zinc-700">
+    <li><strong class="text-zinc-900 font-semibold">Title:</strong> Annie Bot</li>
+    <li><strong class="text-zinc-900 font-semibold">Author:</strong> Caroline</li>
+    <li><strong class="text-zinc-900 font-semibold">Length:</strong> 200 Pages</li>
+    <li><strong class="text-zinc-900 font-semibold">Genres:</strong> Fantasy, Sci-fi</li>
+  </ul>
   
-  <div class="border-t border-zinc-200/80 mt-6 pt-2">
+  <div class="mt-4">
     <BookActions />
   </div>
 </div>
-
 
 Links: <BookActions 
   goodreadsUrl="https://www.goodreads.com/book/show/156023123-annie-bot" 
