@@ -65,6 +65,7 @@ export const categories = [
   { slug: "engineering", name: "Engineering" },
   { slug: "field-notes", name: "Field Notes" },
   { slug: "interviews", name: "Interviews" },
+  { slug: "book-reviews", name: "Book Reviews" },
 ];
 
 export const tags = [
