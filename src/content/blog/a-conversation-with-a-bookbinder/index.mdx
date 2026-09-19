@@ -18,13 +18,26 @@ imageCredit:
 ---
 import BookActions from '../../../components/BookActions.astro';
 
-Book Title: Annie Bot
+<div class="not-prose my-8 p-6 bg-zinc-50 border border-zinc-200/60 rounded-lg max-w-xl mx-auto">
+  <div class="grid grid-cols-3 gap-y-3 text-sm">
+    <div class="font-medium text-zinc-400 uppercase tracking-wider text-xs">Book Title</div>
+    <div class="col-span-2 text-zinc-800 font-semibold">Annie Bot</div>
 
-Author: Caroline
+    <div class="font-medium text-zinc-400 uppercase tracking-wider text-xs">Author</div>
+    <div class="col-span-2 text-zinc-800 font-medium">Caroline</div>
 
-Pages: 200
+    <div class="font-medium text-zinc-400 uppercase tracking-wider text-xs">Pages</div>
+    <div class="col-span-2 text-zinc-600">200 pages</div>
 
-Genres: Fantasy, Sci-fi
+    <div class="font-medium text-zinc-400 uppercase tracking-wider text-xs">Genres</div>
+    <div class="col-span-2 text-zinc-600">Fantasy, Sci-fi</div>
+  </div>
+  
+  <div class="border-t border-zinc-200/80 mt-6 pt-2">
+    <BookActions />
+  </div>
+</div>
+
 
 Links: <BookActions 
   goodreadsUrl="https://www.goodreads.com/book/show/156023123-annie-bot" 
