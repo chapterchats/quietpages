@@ -20,6 +20,7 @@ export const NAVIGATION = [
   { to: "/blog", label: "Blog" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
+  { href: "/category/book-reviews", label: "Book Reviews" },
 ];
 
 export const CONTACT = {
