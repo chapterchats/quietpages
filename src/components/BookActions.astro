@@ -1,27 +1,25 @@
 ---
-// 1. Check if links were passed directly into the tag <BookActions goodreadsUrl="..." />
 let { goodreadsUrl, amazonUrl } = Astro.props;
 
-// 2. If not, check if they are sitting up in the frontmatter block
 const { frontmatter } = Astro.props;
 if (frontmatter) {
   goodreadsUrl = goodreadsUrl || frontmatter.goodreadsUrl;
   amazonUrl = amazonUrl || frontmatter.amazonUrl;
 }
 
-// 3. Safety Check: If no links are found anywhere, hide the component to prevent broken styles
 if (!goodreadsUrl && !amazonUrl) {
   return null;
 }
 ---
 
-<div class="flex flex-wrap gap-4 my-8 not-prose">
+<!-- justify-center centers the buttons horizontally -->
+<div class="flex flex-wrap justify-center gap-4 my-10 not-prose w-full">
   {goodreadsUrl && (
     <a 
       href={goodreadsUrl} 
       target="_blank" 
       rel="noopener noreferrer" 
-      class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium tracking-wide text-white bg-[#553b1e] hover:bg-[#443018] rounded transition-colors duration-200"
+      class="inline-flex items-center justify-center min-w-[180px] px-6 py-2.5 text-sm font-medium tracking-wide text-white bg-[#553b1e] hover:bg-[#443018] rounded transition-colors duration-200 shadow-sm"
     >
       View on Goodreads
     </a>
@@ -32,7 +30,7 @@ if (!goodreadsUrl && !amazonUrl) {
       href={amazonUrl} 
       target="_blank" 
       rel="noopener noreferrer" 
-      class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium tracking-wide text-zinc-900 bg-zinc-100 hover:bg-zinc-200 border border-zinc-300 rounded transition-colors duration-200"
+      class="inline-flex items-center justify-center min-w-[180px] px-6 py-2.5 text-sm font-medium tracking-wide text-white bg-[#553b1e] hover:bg-[#443018] rounded transition-colors duration-200 shadow-sm"
     >
       Read Excerpt on Amazon
     </a>
