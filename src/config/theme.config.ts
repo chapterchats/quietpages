@@ -24,7 +24,6 @@ export const NAVIGATION = [
 export const CONTACT = {
   email: "chapterchatswithcaroline@yahoo.com",
   socialHandle: "@chapterchatswithcaroline",
-  socialUrl: "https://x.com/quietpages",
   socialUrl: "https://www.instagram.com/chapterchatswithcaroline"
 };
 
