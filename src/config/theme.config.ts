@@ -16,7 +16,7 @@ export const SITE = {
 
 export const NAVIGATION = [
   { to: "/", label: "Home" },
-  { to: "/catagories", label: "Book Reviews" },
+  { to: "/catagories/book-reviews", label: "Book Reviews" },
   { to: "/blog", label: "Blog" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
