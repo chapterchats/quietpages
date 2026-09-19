@@ -18,6 +18,23 @@ imageCredit:
 ---
 import BookActions from '../../../components/BookActions.astro';
 
+<div class="not-prose text-center my-6">
+  {/* The matching horizontal meta row */}
+  <div class="flex flex-wrap items-center justify-center gap-x-3 text-xs font-medium tracking-widest text-zinc-400 uppercase">
+    <span>Annie Bot</span>
+    <span class="text-zinc-300">•</span>
+    <span>Caroline</span>
+    <span class="text-zinc-300">•</span>
+    <span>200 Pages</span>
+    <span class="text-zinc-300">•</span>
+    <span>Fantasy, Sci-Fi</span>
+  </div>
+
+  {/* Your centered buttons sit neatly right below it */}
+  <div class="mt-4">
+    <BookActions />
+  </div>
+</div>
 
 
 Links: <BookActions 
