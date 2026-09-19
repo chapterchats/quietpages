@@ -1,10 +1,13 @@
 ---
-interface Props {
-  goodreadsUrl: string;
-  amazonUrl: string;
+// This automatically grabs the frontmatter data from the page it is being used on
+const { frontmatter } = Astro.props;
+
+// If the links don't exist in the frontmatter, this prevents the buttons from breaking
+if (!frontmatter || !frontmatter.goodreadsUrl || !frontmatter.amazonUrl) {
+  return null; 
 }
 
-const { goodreadsUrl, amazonUrl } = Astro.props;
+const { goodreadsUrl, amazonUrl } = frontmatter;
 ---
 
 <div class="flex flex-wrap gap-4 my-8 not-prose">
@@ -28,3 +31,4 @@ const { goodreadsUrl, amazonUrl } = Astro.props;
     Read Excerpt on Amazon
   </a>
 </div>
+
