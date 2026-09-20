@@ -238,13 +238,11 @@ const jsonLd = {
 <div class="mt-12">
   <div id="graphcomment"></div>
 
-  <!-- Note the is:inline tag here to fix the compilation error -->
   <script is:inline type="text/javascript" define:vars={{ slug: Astro.params.slug }}>
     /* - - - CONFIGURATION VARIABLES - - - */
     var __semio__params = {
       graphcommentId: "Chapter-Chats-with-Caroline",
       behaviour: {
-        // This line links the comments to each specific article URL cleanly
         uid: slug, 
       },
     }
