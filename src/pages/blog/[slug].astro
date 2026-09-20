@@ -229,36 +229,18 @@ const jsonLd = {
           }
         </nav>
 
-<style>
-  #graphcomment { min-height: 341px; }
-  @media (min-width: 501px) { #graphcomment { min-height: 304px; } }
-  @media (min-width: 600px) { #graphcomment { min-height: 286px; } }
-</style>
-
 <div class="mt-12">
-  <div id="graphcomment"></div>
-
-  <script is:inline type="text/javascript" define:vars={{ slug: Astro.params.slug }}>
-    /* - - - CONFIGURATION VARIABLES - - - */
-    var __semio__params = {
-      graphcommentId: "Chapter-Chats-with-Caroline",
-      behaviour: {
-        uid: slug, 
-      },
-    }
-
-    /* - - - DON'T EDIT BELOW THIS LINE - - - */
-    window.__semio__onload = function() {
-      __semio__gc_graphlogin(__semio__params)
-    }
-
-    (function() {
-      var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
-      gc.onload = __semio__onload; gc.defer = true; gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
-    })();
-  </script>
+  <div id="JFWebsiteWidget-01a0bde8972070008ed05f8ab2527f1908f3" data-topic={Astro.params.slug}></div>
+  <script is:inline src="https://www.jotform.com/website-widgets/embed/01a0bde8972070008ed05f8ab2527f1908f3"></script>
 </div>
+
+        <div class="mt-12 rounded-md border border-dashed border-border p-8 text-center">
+          <Icon name="message" class="mx-auto h-5 w-5 text-muted-foreground" />
+          <div class="mt-2 font-serif text-lg">Comments</div>
+          <p class="mt-1 text-sm text-muted-foreground"><div id="JFWebsiteWidget-01a0bde8972070008ed05f8ab2527f1908f3"></div>
+          <script src="https://www.jotform.com/website-widgets/embed/01a0bde8972070008ed05f8ab2527f1908f3"></script></p>
+        </div>
+      </div>
 
       <aside class="hidden lg:block">
         <div class="sticky top-24">
