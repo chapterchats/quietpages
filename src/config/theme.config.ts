@@ -31,11 +31,7 @@ export const CONTACT = {
   goodreadsUrl: "https://www.goodreads.com/user/show/95870560-caroline-d-cruz",
 };
 
-<div class="my-8 flex justify-center w-full max-w-xl mx-auto min-h-[200px]">
-  <div set:html={`
-    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="374a06e1-7390-4dfc-bf2d-355dacf473af"></script>
-  `} />
-</div>
+<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="374a06e1-7390-4dfc-bf2d-355dacf473af"></script>
 
 
 export const FORMS = {
