@@ -32,6 +32,7 @@ export const CONTACT = {
 };
 
 <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="374a06e1-7390-4dfc-bf2d-355dacf473af"></script>
+
 export const FORMS = {
   contact: {
     action: "",
