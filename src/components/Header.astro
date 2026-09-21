@@ -59,9 +59,13 @@ const iconClass = isHome
       >
         <Icon name="rss" class="h-4 w-4" />
       </a>
-      <a href={siteConfig.socials.instagram} aria-label="Instagram Profile">
-  <Icon name="instagram" />
-</a>
+      <a
+        href="/instagram"
+        aria-label="Instagram"
+        class={`${iconClass} hidden sm:inline-flex`}
+      >
+        <Icon name="instagram" class="h-4 w-4" />
+      </a>
       <button
         type="button"
         data-theme-toggle
