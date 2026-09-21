@@ -31,8 +31,26 @@ export const CONTACT = {
   goodreadsUrl: "https://www.goodreads.com/user/show/95870560-caroline-d-cruz",
 };
 
-<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="374a06e1-7390-4dfc-bf2d-355dacf473af"></script>
+---
+// Your clean page layout code
+---
 
+<main class="max-w-xl mx-auto py-12 px-4">
+  <h2 class="text-xl font-medium mb-6 text-center">Subscribe to our Newspaper</h2>
+
+  <!-- 1. The script requires a landing target container element to render inside -->
+  <div id="beehiiv-form-container" class="w-full min-h-[160px] flex justify-center items-center">
+    
+    <!-- 2. Use is:inline so the browser runs this script immediately upon render -->
+    <script 
+      is:inline 
+      async 
+      src="https://beehiiv.com" 
+      data-beehiiv-form="374a06e1-7390-4dfc-bf2d-355dacf473af"
+    ></script>
+
+  </div>
+</main>
 
 export const FORMS = {
   contact: {
