@@ -27,6 +27,7 @@ export const CONTACT = {
   socialHandle: "@chapterchatswithcaroline",
   socialUrl: "https://www.instagram.com/chapterchatswithcaroline",
   socialUrl: "https://www.facebook.com/profile.php?id=61561197184012",
+  goodreadsUrl: "https://www.goodreads.com/user/show/95870560-caroline-d-cruz",
 };
 
 export const FORMS = {
@@ -48,6 +49,7 @@ export const SOCIAL_LINKS = [
   { href: SITE.repositoryUrl, label: `${SITE.name} on GitHub`, icon: "github" },
   { href: `mailto:${CONTACT.email}`, label: "Email", icon: "mail" },
   { href: CONTACT.socialUrl, label: "Facbook", icon: "facebook" },
+  { href: CONTACT.goodreadsUrl, label: "Goodreads", icon: "goodreads" },
 ];
 
 export const authors = [
