@@ -25,7 +25,8 @@ export const NAVIGATION = [
 export const CONTACT = {
   email: "chapterchatswithcaroline@yahoo.com",
   socialHandle: "@chapterchatswithcaroline",
-  socialUrl: "https://www.instagram.com/chapterchatswithcaroline"
+  socialUrl: "https://www.instagram.com/chapterchatswithcaroline",
+  socialUrl: "https://www.facebook.com/profile.php?id=61561197184012",
 };
 
 export const FORMS = {
@@ -46,6 +47,7 @@ export const SOCIAL_LINKS = [
   { href: CONTACT.socialUrl, label: "Instagram", icon: "instagram" },
   { href: SITE.repositoryUrl, label: `${SITE.name} on GitHub`, icon: "github" },
   { href: `mailto:${CONTACT.email}`, label: "Email", icon: "mail" },
+  { href: CONTACT.socialUrl, label: "Facbook", icon: "facebook" },
 ];
 
 export const authors = [
