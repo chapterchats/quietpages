@@ -19,6 +19,7 @@ const newsletterEnctype = hasNewsletterEndpoint ? FORMS.newsletter.enctype : und
         enctype={newsletterEnctype}
         class="mt-3 flex gap-2"
       >
+        <input type="hidden" name="_feedback.success.title" value="Thank you! I have recevied your message. I'll get back to you asap." />
         <label for="newsletter-email-compact" class="sr-only">Email address</label>
         <input
           id="newsletter-email-compact"
