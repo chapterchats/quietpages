@@ -33,7 +33,7 @@ export const CONTACT = {
 
 export const FORMS = {
   contact: {
-    action: "",
+    action: "https://submit-form.com/azh6rDHFP",
     method: "post",
     enctype: "application/x-www-form-urlencoded",
   },
