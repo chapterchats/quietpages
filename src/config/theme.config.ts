@@ -38,7 +38,7 @@ export const FORMS = {
     enctype: "application/x-www-form-urlencoded",
   },
   newsletter: {
-    action: "",
+    action: "https://submit-form.com/R9evbrLpw",
     method: "post",
     enctype: "application/x-www-form-urlencoded",
   },
