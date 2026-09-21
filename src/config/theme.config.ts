@@ -27,7 +27,7 @@ export const CONTACT = {
   socialHandle: "@chapterchatswithcaroline",
   goodreads: "Goodreads Profile",
   socialUrl: "https://www.instagram.com/chapterchatswithcaroline",
-  socialUrl: "https://www.facebook.com/profile.php?id=61561197184012",
+  facebookUrl: "https://www.facebook.com/profile.php?id=61561197184012",
   goodreadsUrl: "https://www.goodreads.com/user/show/95870560-caroline-d-cruz",
 };
 
