@@ -25,6 +25,7 @@ export const NAVIGATION = [
 export const CONTACT = {
   email: "chapterchatswithcaroline@yahoo.com",
   socialHandle: "@chapterchatswithcaroline",
+  goodreads: "@carol2585",
   socialUrl: "https://www.instagram.com/chapterchatswithcaroline",
   socialUrl: "https://www.facebook.com/profile.php?id=61561197184012",
   goodreadsUrl: "https://www.goodreads.com/user/show/95870560-caroline-d-cruz",
