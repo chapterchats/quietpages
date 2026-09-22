@@ -63,7 +63,7 @@ export const authors = [
     avatar: "/avatars/caroline-dcruz.svg",
   }
   {
-    slug: "caroline-dcruz",
+    slug: "Untitled-design",
     name: "Caroline Dcruz",
     bio: "An book reviewer, reviewing every book I read one chapter at a time",
     longBio:
