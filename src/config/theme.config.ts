@@ -61,7 +61,7 @@ export const authors = [
     longBio:
       "Caroline reviews and recommendations books that she reads and gives you valuable insights on them",
     avatar: "/avatars/caroline-dcruz.svg",
-  }
+  },
   {
     slug: "caru",
     name: "Caroline Dcruz",
