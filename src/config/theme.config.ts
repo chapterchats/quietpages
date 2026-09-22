@@ -63,12 +63,12 @@ export const authors = [
     avatar: "/avatars/caroline-dcruz.svg",
   },
   {
-    slug: "caru",
+    slug: "carol-d",
     name: "Caroline Dcruz",
     bio: "An book reviewer, reviewing every book I read one chapter at a time",
     longBio:
       "Caroline reviews and recommendations books that she reads and gives you valuable insights on them",
-    avatar: "/avatars/caru.png",
+    avatar: "/avatars/carol-d.png",
   }
 ];
 
