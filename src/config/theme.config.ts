@@ -65,12 +65,13 @@ export const authors = [
 ];
 
 export const categories = [
+  { slug: "book-reviews", name: "Book Reviews" },
   { slug: "essays", name: "Essays" },
   { slug: "design", name: "Design" },
   { slug: "engineering", name: "Engineering" },
   { slug: "field-notes", name: "Field Notes" },
   { slug: "interviews", name: "Interviews" },
-  { slug: "book-reviews", name: "Book Reviews" },
+  
 ];
 
 export const tags = [
