@@ -68,7 +68,7 @@ export const authors = [
     bio: "An book reviewer, reviewing every book I read one chapter at a time",
     longBio:
       "Caroline reviews and recommendations books that she reads and gives you valuable insights on them",
-    avatar: "/avatars/caru.png",
+    avatar: "/avatars/Untitled design.png",
   }
 ];
 
