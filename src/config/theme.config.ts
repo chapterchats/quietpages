@@ -81,4 +81,5 @@ export const tags = [
   { slug: "process", name: "Process" },
   { slug: "web", name: "Web" },
   { slug: "books", name: "Books" },
+  { slug: "japanese-lit", name: "Japanese Lit"},
 ];
