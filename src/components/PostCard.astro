@@ -65,7 +65,7 @@ const thumbnailIsString = typeof post.thumbnail === "string";
       </div>
       {post.thumbnail && (
         <a href={`/blog/${post.slug}`} class="block" aria-label={`Read ${post.title}`}>
-          <div class="aspect-[3/4] overflow-hidden rounded-md bg-muted">
+          <div class="aspect-[16/9] overflow-hidden rounded-md bg-muted">
             {
               thumbnailIsString ? (
                 <img
@@ -105,7 +105,7 @@ const thumbnailIsString = typeof post.thumbnail === "string";
     >
       {post.thumbnail && (
         <a href={`/blog/${post.slug}`} class="block" aria-label={`Read ${post.title}`}>
-          <div class="aspect-[16/10] overflow-hidden rounded-md bg-muted">
+          <div class="aspect-[16/9] overflow-hidden rounded-md bg-muted">
             {
               thumbnailIsString ? (
                 <img
