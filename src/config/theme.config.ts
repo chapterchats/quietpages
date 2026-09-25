@@ -64,7 +64,7 @@ export const authors = [
 
 export const categories = [
   { slug: "book-reviews", name: "Book Reviews" },
-  { slug: "essays", name: "Essays" },
+  { slug: "under-200-pages", name: "Under 200 pages" },
   { slug: "design", name: "Design" },
   { slug: "engineering", name: "Engineering" },
   { slug: "field-notes", name: "Field Notes" },
@@ -74,12 +74,12 @@ export const categories = [
 
 export const tags = [
   { slug: "writing", name: "Writing" },
-  { slug: "typography", name: "Typography" },
-  { slug: "minimalism", name: "Minimalism" },
-  { slug: "tools", name: "Tools" },
-  { slug: "travel", name: "Travel" },
-  { slug: "process", name: "Process" },
-  { slug: "web", name: "Web" },
+  { slug: "childrens", name: "Childrens" },
+  { slug: "fiction", name: "Fiction" },
+  { slug: "short-stories", name: "Short stories" },
+  { slug: "horror", name: "Horror" },
+  { slug: "thriller", name: "Thriller" },
+  { slug: "historical-fiction", name: "Historical Fiction" },
   { slug: "books", name: "Books" },
   { slug: "japanese-lit", name: "Japanese Lit"},
 ];
