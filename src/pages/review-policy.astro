@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../lib/blog-data.js";
+
+// This layout pulls your global header, styles, and footer automatically
+---
+
+<BaseLayout
+  title={`Review Policy - ${SITE.name}`}
+  description={`Review policy and reading preferences for ${SITE.name}`}
+  canonical="/review-policy"
+>
+  <div class="mx-auto max-w-3xl px-5 py-12">
+    <Breadcrumbs items={[{ label: "Home", to: "/" }, { label: "Review Policy" }]} />
+
+    <header class="mt-6">
+      <div class="text-xs font-medium uppercase tracking-[0.2em] text-primary">Guidelines</div>
+      <h1 class="mt-2 font-serif text-5xl font-semibold">Review Policy</h1>
+      <p class="mt-4 max-w-xl text-muted-foreground">
+        Welcome to Chapter Chats with Caroline! To keep reading fun and sustainable, I am highly selective about the review copies I accept. 
+      </p>
+    </header>
+
+    <main class="prose dark:prose-invert mt-12 max-w-none space-y-6 text-muted-foreground">
+      <section>
+        <h2 class="text-xl font-semibold text-foreground mt-6 mb-2">Current Status: Highly Selective</h2>
+        <p>
+          I am currently accepting a very limited number of review copies from <strong>traditional publishers, publicists, and literary PR agencies only</strong>. 
+        </p>
+        <p class="mt-2 italic bg-muted/30 p-3 rounded-lg border border-border/50 text-xs">
+          Note: I am unfortunately unable to accept self-published, indie, or hybrid-published submissions at this time. Unsolicited pitches for these formats will not receive a reply.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-foreground mt-6 mb-2">Genres I Read & Review</h2>
+        <p>I am most likely to accept books that fall within my favorite reading categories:</p>
+        <ul class="list-disc pl-5 space-y-1 mt-2">
+          <li>Historical Fiction</li>
+          <li>Psychological Thrillers / Mystery</li>
+          <li>Contemporary Fiction & Memoirs</li>
+        </ul>
+        <p class="mt-2 text-sm">I do not review horror, hard sci-fi, fantasy, or textbooks.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-foreground mt-6 mb-2">Formats Accepted</h2>
+        <p>I prefer to read in the following formats (ranked by preference):</p>
+        <ol class="list-decimal pl-5 space-y-1 mt-2">
+          <li>Physical copies (Finished copies or ARCs)</li>
+          <li>NetGalley widgets</li>
+          <li>Kindle / ePub digital files</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-foreground mt-6 mb-2">My Review Policy & Commitment</h2>
+        <ul class="list-disc pl-5 space-y-2 mt-2">
+          <li><strong>Honest Opinions:</strong> All reviews reflect my completely honest, unfiltered thoughts. Accepting a book does not guarantee a positive review.</li>
+          <li><strong>No Guarantees:</strong> Due to a busy reading schedule, accepting a copy means I will consider it for review, but it does not guarantee a publication date or a dedicated post on the blog.</li>
+          <li><strong>Tone:</strong> Even if a book isn't for me, I always keep my critiques constructive and respectful. I do not post cruel or overly harsh reviews.</li>
+        </ul>
+      </section>
+
+      <section class="border-t border-border pt-6 mt-8">
+        <h2 class="text-xl font-semibold text-foreground mb-2">How to Pitch</h2>
+        <p>
+          If your book fits all of the criteria above, please reach out via my contact form with the book's synopsis, publisher, publication date, and why you think it fits my blog. Thank you so much for respecting my reading boundaries!
+        </p>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
