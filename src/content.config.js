@@ -16,7 +16,7 @@ const blog = defineCollection({
       seoDescription: z.string().optional(),
       canonical: z.string().url().optional(),
       date: z.coerce.date(),
-      releaseDate: z.coerce.date().optional(),
+      status: z.string().optional(),
       updated: z.coerce.date().optional(),
       readingTime: z.number().int().positive().optional(),
       category: z.string(),
