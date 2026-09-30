@@ -20,13 +20,7 @@ const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
 const unreleasedBooks = (await sortedPosts()).filter((post) => {
-  if (!post?.data?.releaseDate) return false;
-
-  const releaseTime = new Date(post.data.releaseDate).getTime();
-  const serverTime = new Date().getTime();
-
-  // If the book release time stamp is greater than now, or within a 24-hour window, show it!
-  return releaseTime > serverTime || (serverTime - releaseTime) < 24 * 60 * 60 * 1000;
+  return post?.data?.status === "unreleased";
 });
 ---
 
@@ -210,13 +204,6 @@ const unreleasedBooks = (await sortedPosts()).filter((post) => {
         <div class="p-6 bg-card rounded-lg border border-border/40 shadow-sm opacity-90 border-l-4 border-l-amber-500">
           <h3 class="font-semibold text-lg text-heading line-clamp-2">{book.data.title}</h3>
           <p class="text-xs text-muted mt-2">{book.data.excerpt}</p>
-          <div class="mt-4 inline-block text-xs font-semibold px-2 py-1 bg-amber-50 text-amber-700 dark:bg-amber-950/30 dark:text-amber-400 rounded">
-            Releasing: {new Date(book.data.releaseDate).toLocaleDateString('en-IN', { 
-              month: 'short', 
-              day: 'numeric', 
-              year: 'numeric' 
-            })}
-          </div>
         </div>
       ))}
     </div>
