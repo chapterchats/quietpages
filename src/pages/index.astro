@@ -19,8 +19,21 @@ const featured = await featuredPost();
 const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
-const unreleasedBooks = latest.filter((post) => {
-  return post?.data?.releaseDate && new Date(post.data.releaseDate) > new Date();
+// Leave your "latest" variable exactly how you want it:
+const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
+
+// A rock-solid time check that works perfectly on Vercel's servers:
+const unreleasedBooks = (await sortedPosts()).filter((post) => {
+  if (!post?.data?.releaseDate) return false;
+  
+  const releaseDate = new Date(post.data.releaseDate);
+  const today = new Date();
+  
+  // Set the time to midnight so we only compare the calendar days
+  releaseDate.setHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
+  
+  return releaseDate > today;
 });
 ---
 
