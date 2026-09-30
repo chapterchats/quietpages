@@ -25,10 +25,12 @@ const unreleasedBooks = (await sortedPosts()).filter((post) => {
   const releaseDate = new Date(post.data.releaseDate);
   const today = new Date();
   
-  releaseDate.setHours(0, 0, 0, 0);
-  today.setHours(0, 0, 0, 0);
+  // Set both dates to midnight UTC to completely ignore hours, minutes, and local time zones
+  releaseDate.setUTCHours(0, 0, 0, 0);
+  today.setUTCHours(0, 0, 0, 0);
   
-  return releaseDate > today;
+  // Safety check: as long as the release date is equal to or greater than today, keep it visible!
+  return releaseDate >= today;
 });
 ---
 
