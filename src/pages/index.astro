@@ -21,16 +21,13 @@ const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
 const unreleasedBooks = (await sortedPosts()).filter((post) => {
   if (!post?.data?.releaseDate) return false;
-  
-  const releaseDate = new Date(post.data.releaseDate);
-  const today = new Date();
-  
-  // Set both dates to midnight UTC to completely ignore hours, minutes, and local time zones
-  releaseDate.setUTCHours(0, 0, 0, 0);
-  today.setUTCHours(0, 0, 0, 0);
-  
-  // Safety check: as long as the release date is equal to or greater than today, keep it visible!
-  return releaseDate >= today;
+
+  // Format dates strictly into "YYYY-MM-DD" text fields
+  const releaseStr = new Date(post.data.releaseDate).toISOString().split('T')[0];
+  const todayStr = new Date().toISOString().split('T')[0];
+
+  // If the release date string is greater than or equal to today's string, show it!
+  return releaseStr >= todayStr;
 });
 ---
 
