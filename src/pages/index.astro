@@ -20,21 +20,19 @@ const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
 const unreleasedBooks = (await sortedPosts()).filter((post) => {
+  // Check if a release date is written in the file at all
   if (!post?.data?.releaseDate) return false;
 
-  // Convert the file date into a clean text string: "2026-10-01"
-  const targetDate = new Date(post.data.releaseDate);
-  const releaseStr = targetDate.getFullYear() + '-' + 
-                     String(targetDate.getMonth() + 1).padStart(2, '0') + '-' + 
-                     String(targetDate.getDate()).padStart(2, '0');
+  // Read the date text directly from the markdown file (e.g., "2026-10-01")
+  const releaseStr = String(post.data.releaseDate);
 
-  // Convert the present server clock day into the exact same clean format: "2026-09-30"
-  const currentDate = new Date();
-  const todayStr = currentDate.getFullYear() + '-' + 
-                   String(currentDate.getMonth() + 1).padStart(2, '0') + '-' + 
-                   String(currentDate.getDate()).padStart(2, '0');
+  // Get today's local date format strictly as text "YYYY-MM-DD"
+  const now = new Date();
+  const todayStr = now.getFullYear() + '-' + 
+                   String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                   String(now.getDate()).padStart(2, '0');
 
-  // Perform a straight text assessment. Is "2026-10-01" greater than or equal to "2026-09-30"? Yes!
+  // Simply check if the release date string is mathematically ahead of or equal to today!
   return releaseStr >= todayStr;
 });
 ---
