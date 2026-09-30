@@ -27,15 +27,17 @@ today.setHours(0, 0, 0, 0);
 const activeReleases = (await sortedPosts()).filter(post => {
   if (!post.data || !post.data.releaseDate) return false;
   
-  // Format today's calendar date to YYYY-MM-DD
-  const todayString = today.toISOString().split('T')[0];
+  // Normalize both parameters into absolute date values
+  const bookDate = new Date(post.data.releaseDate);
+  const targetToday = new Date(today);
   
-  // Force the post date to format as YYYY-MM-DD string
-  const postDateString = new Date(post.data.releaseDate).toISOString().split('T')[0];
+  // Wipe out hours, minutes, and time zones to compare only real calendar days
+  bookDate.setHours(0,0,0,0);
+  targetToday.setHours(0,0,0,0);
   
-  // Directly evaluate standard text alphabet sorting (future strings are always greater)
-  return postDateString >= todayString;
+  return bookDate.getTime() >= targetToday.getTime();
 });
+
 ---
 
 <BaseLayout
