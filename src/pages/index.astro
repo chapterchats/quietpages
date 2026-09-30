@@ -21,19 +21,14 @@ const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
 import { getCollection } from 'astro:content';
 
-// 1. Fetch all your published review posts automatically
-const allReviews = await getCollection('blog');
-
-// 2. Separate them by today's date
+// Paste this in its place
 const today = new Date();
 today.setHours(0, 0, 0, 0);
 
-// Filter out books whose release date is in the future
-const activeReleases = allReviews
-  .map(post => post.data) 
-  .filter(review => {
-    // Looks for a 'releaseDate' parameter inside your post settings
-    return review.releaseDate && new Date(review.releaseDate) >= today;
+// This automatically pulls books with future release dates from your real posts
+const activeReleases = sortedPosts
+  .filter(post => {
+    return post.data.releaseDate && new Date(post.data.releaseDate) >= today;
   });
 
 ---
