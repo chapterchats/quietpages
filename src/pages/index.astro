@@ -20,7 +20,7 @@ const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
 const unreleasedBooks = latest.filter((post) => {
-  return post.data.releaseDate && new Date(post.data.releaseDate) > new Date();
+  return post?.data?.releaseDate && new Date(post.data.releaseDate) > new Date();
 });
 ---
 
