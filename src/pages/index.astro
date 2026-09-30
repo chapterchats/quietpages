@@ -20,20 +20,13 @@ const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
 const unreleasedBooks = (await sortedPosts()).filter((post) => {
-  // Check if a release date is written in the file at all
   if (!post?.data?.releaseDate) return false;
 
-  // Read the date text directly from the markdown file (e.g., "2026-10-01")
-  const releaseStr = String(post.data.releaseDate);
+  const releaseTime = new Date(post.data.releaseDate).getTime();
+  const serverTime = new Date().getTime();
 
-  // Get today's local date format strictly as text "YYYY-MM-DD"
-  const now = new Date();
-  const todayStr = now.getFullYear() + '-' + 
-                   String(now.getMonth() + 1).padStart(2, '0') + '-' + 
-                   String(now.getDate()).padStart(2, '0');
-
-  // Simply check if the release date string is mathematically ahead of or equal to today!
-  return releaseStr >= todayStr;
+  // If the book release time stamp is greater than now, or within a 24-hour window, show it!
+  return releaseTime > serverTime || (serverTime - releaseTime) < 24 * 60 * 60 * 1000;
 });
 ---
 
