@@ -19,18 +19,13 @@ const featured = await featuredPost();
 const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
-import { getCollection } from 'astro:content';
-
-// Paste this in its place
 const today = new Date();
 today.setHours(0, 0, 0, 0);
 
-// This automatically pulls books with future release dates from your real posts
-const activeReleases = sortedPosts
-  .filter(post => {
-    return post.data.releaseDate && new Date(post.data.releaseDate) >= today;
-  });
-
+// Safely filters posts that have a future releaseDate set in the markdown
+const activeReleases = sortedPosts.filter(post => {
+  return post.data && post.data.releaseDate && new Date(post.data.releaseDate) >= today;
+});
 ---
 
 <BaseLayout
@@ -207,17 +202,17 @@ const activeReleases = sortedPosts
     <h2 class="text-3xl font-serif mb-8 text-foreground">Upcoming Releases</h2>
     
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {activeReleases.map(book => (
+      {activeReleases.map(post => (
         <div class="flex gap-4 items-start">
           <div class="bg-muted border border-border rounded flex items-center justify-center p-4 text-center text-xs italic text-muted-foreground w-[100px] h-[140px] flex-shrink-0">
             [Cover Art Coming Soon]
           </div>
           <div>
             <span class="text-xs uppercase tracking-wider text-muted-foreground font-medium block mb-1">
-              Releasing: {formatDate(book.data.releaseDate)}
+              Releasing: {post.data.releaseDate}
             </span>
-            <h3 class="text-lg font-serif text-foreground font-semibold mb-2">{book.title}</h3>
-            <p class="text-sm text-muted-foreground line-clamp-4 leading-relaxed">{book.teaser}</p>
+            <h3 class="text-lg font-serif text-foreground font-semibold mb-2">{post.data.title}</h3>
+            <p class="text-sm text-muted-foreground line-clamp-4 leading-relaxed">{post.data.description || post.data.teaser}</p>
           </div>
         </div>
       ))}
