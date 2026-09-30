@@ -27,13 +27,15 @@ today.setHours(0, 0, 0, 0);
 const activeReleases = (await sortedPosts()).filter(post => {
   if (!post.data || !post.data.releaseDate) return false;
   
-  // Safely converts both text fields and date configurations uniformly
-  const releaseTime = new Date(post.data.releaseDate).getTime();
-  const checkTime = today.getTime();
+  // Format today's calendar date to YYYY-MM-DD
+  const todayString = today.toISOString().split('T')[0];
   
-  return releaseTime >= checkTime;
+  // Force the post date to format as YYYY-MM-DD string
+  const postDateString = new Date(post.data.releaseDate).toISOString().split('T')[0];
+  
+  // Directly evaluate standard text alphabet sorting (future strings are always greater)
+  return postDateString >= todayString;
 });
-
 ---
 
 <BaseLayout
