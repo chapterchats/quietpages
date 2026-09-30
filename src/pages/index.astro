@@ -19,28 +19,23 @@ const featured = await featuredPost();
 const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
-// Define your unreleased books list
-const upcomingBooks = [
-  {
-    title: "The Next Great Mystery",
-    releaseDate: "2026-10-15", // Format: YYYY-MM-DD (Future Date)
-    displayDate: "Oct 15, 2026",
-    teaser: "A quick, exciting teaser hook sentence introducing the plot line of this unreleased manuscript.",
-  },
-  {
-    title: "Untold Secrets",
-    releaseDate: "2026-12-01", // Format: YYYY-MM-DD (Future Date)
-    displayDate: "Dec 1, 2026",
-    teaser: "Another compelling teaser description for the second advance reader copy you've completed.",
-  }
-];
+import { getCollection } from 'astro:content';
 
-// Automatically filter out any books whose release date has passed
-const activeReleases = upcomingBooks.filter(book => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  return new Date(book.releaseDate) >= today;
-});
+// 1. Fetch all your published review posts automatically
+const allReviews = await getCollection('blog');
+
+// 2. Separate them by today's date
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+// Filter out books whose release date is in the future
+const activeReleases = allReviews
+  .map(post => post.data) 
+  .filter(review => {
+    // Looks for a 'releaseDate' parameter inside your post settings
+    return review.releaseDate && new Date(review.releaseDate) >= today;
+  });
+
 ---
 
 <BaseLayout
