@@ -20,7 +20,9 @@ const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
 const unreleasedBooks = (await sortedPosts()).filter((post) => {
-  return post?.data?.releaseDate && new Date(post.data.releaseDate).getTime() >= new Date().setHours(0,0,0,0);
+  if (!post?.data?.releaseDate) return false;
+  // This checks if the release date is today or in the future
+  return new Date(post.data.releaseDate).setHours(23,59,59,999) >= new Date().getTime();
 });
 ---
 
