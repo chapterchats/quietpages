@@ -19,10 +19,9 @@ const featured = await featuredPost();
 const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
-// Get all unreleased posts where the releaseDate is set and is in the future
-const unreleasedBooks = (await sortedPosts()).filter(post => {
-  return post.data.releaseDate && new Date(post.data.releaseDate) > new Date();
-});
+/const unreleasedBooks = latest.filter(post => 
+  post.data.releaseDate && new Date(post.data.releaseDate) > new Date()
+);
 ---
 
 <BaseLayout
