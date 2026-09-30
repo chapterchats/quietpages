@@ -7,7 +7,7 @@ const siteUrl = (
 export const SITE = {
   name: "Chapter Chats with Caroline",
   description:
-    "An book review blog, where I review all the book I read one chapter at a time.",
+    "An independent space dedicated to thoughtful book reviews, reading recommendations, and literary escapes.",
   url: siteUrl,
   locale: "en-US",
   language: "en",
