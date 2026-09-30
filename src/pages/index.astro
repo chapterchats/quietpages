@@ -25,8 +25,15 @@ today.setHours(0, 0, 0, 0);
 
 // Safely filters posts that have a future releaseDate set in the markdown
 const activeReleases = (await sortedPosts()).filter(post => {
-  return post.data && post.data.releaseDate && new Date(post.data.releaseDate) >= today;
+  if (!post.data || !post.data.releaseDate) return false;
+  
+  // Safely converts both text fields and date configurations uniformly
+  const releaseTime = new Date(post.data.releaseDate).getTime();
+  const checkTime = today.getTime();
+  
+  return releaseTime >= checkTime;
 });
+
 ---
 
 <BaseLayout
