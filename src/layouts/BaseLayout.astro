@@ -51,6 +51,7 @@ const ogImageUrl = absoluteUrl(ogImage);
     {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <Analytics />
     <link
       rel="preload"
       href="/fonts/inter-latin.woff2"
