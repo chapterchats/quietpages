@@ -1,4 +1,5 @@
 ---
+import PostCard from "../components/PostCard.astro";
 import { getCollection } from 'astro:content';
 
 const rawBlogPosts = await getCollection('blog');
@@ -22,7 +23,7 @@ const sortedUpcoming = upcomingBooks.sort(
 
 <section class="my-12 px-6 max-w-6xl mx-auto">
   <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6 flex items-center gap-2">
-    📅 Upcoming Book Releases
+     Upcoming Releases
   </h2>
   
   {sortedUpcoming.length === 0 ? (
@@ -30,25 +31,19 @@ const sortedUpcoming = upcomingBooks.sort(
   ) : (
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {sortedUpcoming.map((post) => (
-        <article class="p-5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-          <h3 class="text-lg font-semibold text-zinc-950 dark:text-zinc-50 line-clamp-2 mb-2">
-            {post.data.title}
-          </h3>
-          <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-4">
-            <strong class="font-medium text-zinc-700 dark:text-zinc-300">Expected Release:</strong>{' '}
-            {new Date(post.data.bookPubDate).toLocaleDateString('en-US', {
+        <div class="relative group">
+          {/* 1. Reuse the template's official beautiful card */}
+          <PostCard post={post} />
+          
+          {/* 2. Add a tiny custom overlay badge showing the future release date */}
+          <div class="mt-2 text-xs font-semibold tracking-wide uppercase text-indigo-600 dark:text-indigo-400">
+            📅 Expected Release: {new Date(post.data.bookPubDate).toLocaleDateString('en-US', {
               month: 'long',
               day: 'numeric',
               year: 'numeric'
             })}
-          </p>
-          <a 
-            href={`/blog/${post.slug || post.id}/`} 
-            class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1"
-          >
-            Read Sneak Peek →
-          </a>
-        </article>
+          </div>
+        </div>
       ))}
     </div>
   )}
