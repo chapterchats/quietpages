@@ -69,28 +69,37 @@ export const formatDate = (iso) =>
     month: "long",
     day: "numeric",
   });
+
 export async function getUpcomingBooks() {
   const allPosts = await posts();
-  const today = new Date();
+  // Get the numerical timestamp for today
+  const todayTime = new Date().getTime();
   
   return allPosts.filter(post => {
     const rawRelease = post['releaseDate'];
     if (!rawRelease) return false;
-    return new Date(rawRelease) > today;
+    
+    // Parse your string text date manually into a comparable number
+    const releaseTime = new Date(rawRelease).getTime();
+    return releaseTime > todayTime;
   });
 }
 
 export async function getPublishedPosts() {
   const allPosts = await posts();
-  const today = new Date();
+  const todayTime = new Date().getTime();
   
   const filtered = allPosts.filter(post => {
     const rawRelease = post['releaseDate'];
     if (!rawRelease) return true;
-    return new Date(rawRelease) <= today;
+    
+    const releaseTime = new Date(rawRelease).getTime();
+    return releaseTime <= todayTime;
   });
 
+  // Sort them using clean timestamp values
   return filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
+
 
 
