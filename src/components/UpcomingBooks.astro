@@ -72,9 +72,9 @@ const sortedUpcoming = upcomingBooks.sort(
             </p>
           </div>
 
-                    {/* 4. Author Credits & Reading Time */}
-          <div class="mt-3 text-xs text-muted-foreground">,
-          {author?.name} &middot; {post.readingTime} min
+                              {/* 4. Dynamic Author Credits & True Reading Time */}
+          <div class="text-xs text-zinc-400 dark:text-zinc-500 font-medium mt-1">
+            By {post.data.author?.name || 'Caroline D\'cruz'} &middot; {post.readingTime} min
           </div>
         </div>
       ))}
