@@ -69,3 +69,27 @@ export const formatDate = (iso) =>
     month: "long",
     day: "numeric",
   });
+export async function getUpcomingBooks() {
+  const allPosts = await posts();
+  const today = new Date();
+  
+  return allPosts.filter(post => {
+    const rawRelease = post.data['releaseDate'];
+    if (!rawRelease) return false;
+    return new Date(rawRelease) > today;
+  });
+}
+
+export async function getPublishedPosts() {
+  const allPosts = await posts();
+  const today = new Date();
+  
+  return allPosts
+    .filter(post => {
+      const rawRelease = post.data['releaseDate'];
+      if (!rawRelease) return true;
+      return new Date(rawRelease) <= today;
+    })
+    .    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+}
+
