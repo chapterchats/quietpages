@@ -210,18 +210,51 @@ const publishedBooks = allPosts
     </div>
   </section>
 
+<!-- Upcoming Releases Section -->
 <section class="my-12 px-4 md:px-0">
   <h2 class="text-2xl font-serif mb-6 text-gray-900">Upcoming Releases</h2>
-  <div class="grid gap-6">
-    {unreleasedBooks.map(book => (
-      <article>
-        <a href={`/blog/${book.slug}`} class="text-amber-800 hover:underline font-medium">
-          {book.data.title}
-        </a>
-        <p class="text-sm text-gray-500">Releasing: {new Date(book.data.pubDate).toLocaleDateString()}</p>
-      </article>
-    ))}
-  </div>
+  
+  {unreleasedBooks.length === 0 ? (
+    <p class="text-gray-500 italic">No unreleased books on my radar right now!</p>
+  ) : (
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {unreleasedBooks.map((book) => (
+        <article class="flex flex-col space-y-2">
+          <!-- Book Image Placeholder (Matches your theme style) -->
+          {book.data.heroImage && (
+            <div class="aspect-[4/3] w-full overflow-hidden rounded bg-gray-100 mb-2">
+              <img 
+                src={book.data.heroImage} 
+                alt={book.data.title}
+                class="w-full h-full object-cover" 
+              />
+            </div>
+          )}
+          
+          <!-- Category and Date Line -->
+          <div class="text-xs tracking-wider uppercase text-gray-500">
+            Releasing: {new Date(book.data.pubDate).toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            })}
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-xl font-bold font-serif text-gray-900 hover:text-amber-800 transition-colors">
+            <a href={`/blog/${book.slug}`}>
+              {book.data.title}
+            </a>
+          </h3>
+
+          <!-- Snippet Description -->
+          <p class="text-sm text-gray-600 line-clamp-2">
+            {book.data.description}
+          </p>
+        </article>
+      ))}
+    </div>
+  )}
 </section>
 
   <Newsletter />
