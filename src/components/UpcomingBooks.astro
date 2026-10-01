@@ -43,7 +43,7 @@ const sortedUpcoming = upcomingBooks.sort(
           {/* 1. The Cover Image Container */}
           {post.data.thumbnail && (
             <a href={`/blog/${post.slug || post.id}/`} class="overflow-hidden rounded-xl block aspect-[16/10] bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800">
-              <image
+              <Image
                 src={post.data.thumbnail} 
                 alt={post.data.thumbnailAlt || post.data.title}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
