@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import PostCard from "../components/PostCard.astro";
 import { getCollection } from 'astro:content';
+import { normalizePost } from "../lib/blog-data.js";
 const rawBlogPosts = await getCollection('blog');
 
 // Get today's current date
@@ -26,6 +27,7 @@ const upcomingBooks = rawBlogPosts.filter((post) => {
 const sortedUpcoming = upcomingBooks.sort(
   (a, b) => new Date(a.data.bookPubDate).getTime() - new Date(b.data.bookPubDate).getTime()
 );
+const sortedUpcoming = sortedUpcomingRaw.map(normalizePost);
 
 ---
 
@@ -73,7 +75,8 @@ const sortedUpcoming = upcomingBooks.sort(
           </div>
 
           <div class="mt-3 text-xs text-muted-foreground">
-         {post.data.author?.name || "Caroline D'cruz"} &middot; {Math.max(1, Math.ceil(post.body.trim().split(/\s+/).filter(Boolean).length ))} min
+         <div class="mt-3 text-xs text-muted-foreground">
+            {post.author?.name || "Caroline D'cruz"} &middot; {post.readingTime} min
           </div>
         </div>
       ))}
