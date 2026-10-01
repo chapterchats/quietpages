@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import PostCard from "../components/PostCard.astro";
+import { getAuthor, getCategory } from "../lib/blog-data.js";
 import { getCollection } from 'astro:content';
 const rawBlogPosts = await getCollection('blog');
 
