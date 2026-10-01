@@ -1,24 +1,31 @@
 ---
 import PostCard from "../components/PostCard.astro";
 import { getCollection } from 'astro:content';
-
 const rawBlogPosts = await getCollection('blog');
+
+// Get today's current date
 const today = new Date();
 
 // Filter for books whose publication date is in the future
 const upcomingBooks = rawBlogPosts.filter((post) => {
-  if (!post || !post.data || post.data.draft || !post.data.bookPubDate) return false;
+  // 1. If it's an old post without a book release date, skip it safely!
+  if (!post || !post.data || !post.data.bookPubDate) return false;
   
+  // 2. If an old post is broken and doesn't have a tags list, skip it safely!
+  if (!post.data.tags || !Array.isArray(post.data.tags)) return false;
+  
+  // 3. Compare the dates for future books
   const releaseTime = new Date(post.data.bookPubDate).getTime();
   const currentTime = today.getTime();
   
   return releaseTime > currentTime;
 });
 
-// Sort them so the closest release date is first
+// 4. Sort them so the closest release date is first
 const sortedUpcoming = upcomingBooks.sort(
   (a, b) => new Date(a.data.bookPubDate).getTime() - new Date(b.data.bookPubDate).getTime()
 );
+
 ---
 
 <section class="my-12 px-6 max-w-6xl mx-auto">
