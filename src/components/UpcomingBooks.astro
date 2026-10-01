@@ -54,7 +54,7 @@ const sortedUpcoming = upcomingBooks.sort(
           
           {/* 2. Meta Info (Category & Release Date) */}
           <div class="flex items-center gap-3 text-xs uppercase tracking-wider font-semibold mt-1">
-          <a href={`/blog/${post.data.category}`} class="text-zinc-400 dark:text-zinc-500 hover:underline">
+          <a href={`/categories/${post.data.category.toLowerCase()}`} class="text-zinc-400 dark:text-zinc-500 hover:underline">
           {post.data.category.replace('-', ' ')}
           </a>
           <span class="text-zinc-400 dark:text-zinc-500">&bull;</span>
