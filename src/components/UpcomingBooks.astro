@@ -27,6 +27,19 @@ const sortedUpcoming = upcomingBooks.sort(
   (a, b) => new Date(a.data.bookPubDate).getTime() - new Date(b.data.bookPubDate).getTime()
 );
 
+// 5. Calculate dynamic reading times for each upcoming post asynchronously
+const sortedUpcoming = await Promise.all(
+  sortedUpcomingRaw.map(async (post) => {
+    // Render the post markdown text to fetch template plugin calculations
+    const rendered = await post.render();
+    
+    return {
+      ...post,
+      // Fallback cleanly to the template's dynamic metric or calculate it based on word length
+      readingTime: rendered.remarkPluginFrontmatter?.minutesRead || post.data.readingTime || "3"
+    };
+  })
+);
 ---
 
 <section class="my-12 px-6 max-w-6xl mx-auto">
