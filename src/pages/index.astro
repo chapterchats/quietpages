@@ -20,28 +20,24 @@ const featured = await featuredPost();
 const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
-
-// 1. Fetch all your book posts
 const allPosts = await getCollection('blog');
-
-// 2. Get today's date (October 1, 2026)
 const today = new Date();
 
-// 3. Filter for unreleased books (Checks your custom releaseDate field)
+// Filter upcoming books securely
 const unreleasedBooks = allPosts.filter(post => {
-  if (!post.data.releaseDate) return false; // Ignore if it doesn't have a release date
+  if (!post.data.releaseDate) return false;
   const bookRelease = new Date(post.data.releaseDate);
   return bookRelease > today;
 });
 
-// 4. Filter for your main feed (Books already out OR posts without a releaseDate)
+// Filter main feed reviews securely
 const publishedBooks = allPosts
   .filter(post => {
-    if (!post.data.releaseDate) return true; // Keep standard posts in the main feed
+    if (!post.data.releaseDate) return true;
     const bookRelease = new Date(post.data.releaseDate);
     return bookRelease <= today;
   })
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).g
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date)
 ---
 
 <BaseLayout
