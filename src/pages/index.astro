@@ -21,6 +21,8 @@ const featured = await featuredPost();
 const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
+const unreleasedBooks = await getUpcomingBooks();
+const publishedBooks = await getPublishedPosts();
 ---
 
 <BaseLayout
