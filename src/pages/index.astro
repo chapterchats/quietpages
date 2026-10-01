@@ -20,26 +20,28 @@ const featured = await featuredPost();
 const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
+
 // 1. Fetch all your book posts
 const allPosts = await getCollection('blog');
 
-// 2. Get the current date at the time Vercel builds your site
+// 2. Get today's date (October 1, 2026)
 const today = new Date();
 
-// 3. Filter for unreleased books (Release date is in the FUTURE)
+// 3. Filter for unreleased books (Checks your custom releaseDate field)
 const unreleasedBooks = allPosts.filter(post => {
-  const releaseDate = new Date(post.data.pubDate);
-  return releaseDate > today;
+  if (!post.data.releaseDate) return false; // Ignore if it doesn't have a release date
+  const bookRelease = new Date(post.data.releaseDate);
+  return bookRelease > today;
 });
 
-// 4. Filter for published books (Release date is TODAY or in the PAST)
-// This also sorts them so the newest releases show up first
+// 4. Filter for your main feed (Books already out OR posts without a releaseDate)
 const publishedBooks = allPosts
   .filter(post => {
-    const releaseDate = new Date(post.data.pubDate);
-    return releaseDate <= today;
+    if (!post.data.releaseDate) return true; // Keep standard posts in the main feed
+    const bookRelease = new Date(post.data.releaseDate);
+    return bookRelease <= today;
   })
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).g
 ---
 
 <BaseLayout
