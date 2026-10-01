@@ -31,7 +31,7 @@ const sortedUpcoming = upcomingBooks.sort(
 
 <section class="my-12 px-6 max-w-6xl mx-auto">
   <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6 flex items-center gap-2">
-    📅 Upcoming Book Releases
+     Upcoming Book Releases
   </h2>
           
   {sortedUpcoming.length === 0 ? (
@@ -43,7 +43,7 @@ const sortedUpcoming = upcomingBooks.sort(
           {/* 1. The Cover Image Container */}
           {post.data.thumbnail && (
             <a href={`/blog/${post.slug || post.id}/`} class="overflow-hidden rounded-xl block aspect-[16/10] bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800">
-              <img 
+              <image
                 src={post.data.thumbnail} 
                 alt={post.data.thumbnailAlt || post.data.title}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
