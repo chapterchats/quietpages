@@ -72,9 +72,9 @@ const sortedUpcoming = upcomingBooks.sort(
             </p>
           </div>
 
-          {/* 4. Author Credits */}
+                    {/* 4. Author Credits & Reading Time */}
           <div class="text-xs text-zinc-400 dark:text-zinc-500 font-medium mt-1">
-            By {post.data.author || 'Caroline'}
+            {post.data.author?.name || 'Caroline D\'cruz'} &middot; {post.data.readingTime || '3'} min
           </div>
         </div>
       ))}
