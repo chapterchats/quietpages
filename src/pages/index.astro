@@ -20,24 +20,21 @@ const featured = await featuredPost();
 const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
-const allPosts = await getCollection('blog');
-const today = new Date();
-
-// Filter upcoming books securely
+// Filter upcoming books securely by looking at raw frontmatter
 const unreleasedBooks = allPosts.filter(post => {
-  if (!post.data.releaseDate) return false;
-  const bookRelease = new Date(post.data.releaseDate);
-  return bookRelease > today;
+  const rawReleaseDate = post.data['releaseDate'] || post.id; 
+  if (!rawReleaseDate || rawReleaseDate === post.id) return false;
+  return new Date(rawReleaseDate) > today;
 });
 
 // Filter main feed reviews securely
 const publishedBooks = allPosts
   .filter(post => {
-    if (!post.data.releaseDate) return true;
-    const bookRelease = new Date(post.data.releaseDate);
-    return bookRelease <= today;
+    const rawReleaseDate = post.data['releaseDate'] || post.id;
+    if (!rawReleaseDate || rawReleaseDate === post.id) return true;
+    return new Date(rawReleaseDate) <= today;
   })
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
 <BaseLayout
