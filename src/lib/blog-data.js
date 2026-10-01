@@ -90,6 +90,6 @@ export async function getPublishedPosts() {
       if (!rawRelease) return true;
       return new Date(rawRelease) <= today;
     })
-    .    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 }
 
