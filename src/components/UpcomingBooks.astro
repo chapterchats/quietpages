@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import PostCard from "../components/PostCard.astro";
 import { getCollection } from 'astro:content';
-import { normalizePost } from "../lib/blog-data.js";
 const rawBlogPosts = await getCollection('blog');
 
 // Get today's current date
@@ -75,7 +74,7 @@ const sortedUpcoming = upcomingBooks.sort(
 
           {/* 4. Matching Author Credits & Dynamic Reading Time */}
           <div class="mt-3 text-xs text-muted-foreground">
-            {post.author?.name || "Caroline D'cruz"} &middot; {post.readingTime} min
+            {post.data.author?.name || "Caroline D'cruz"} &middot; {Math.max(1, Math.ceil(post.body.trim().split(/\s+/).filter(Boolean).wordperminute / 220))} min
           </div>
         </div>
       ))}
