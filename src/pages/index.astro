@@ -13,8 +13,6 @@ import {
   getAuthor,
   getCategory,
   formatDate,
-  getUpcomingBooks,
-  getPublishedPosts,
 } from "../lib/blog-data.js";
 
 const featured = await featuredPost();
@@ -192,38 +190,6 @@ const publishedBooks = await getPublishedPosts();
       </a>
     </div>
   </section>
-
-<!-- Upcoming Releases Section -->
-<section class="my-12 px-4 md:px-0">
-  <h2 class="text-2xl font-serif mb-6 text-gray-900">Upcoming Releases</h2>
-  
-  {unreleasedBooks.length === 0 ? (
-    <p class="text-gray-500 italic text-sm">No upcoming releases on my radar right now!</p>
-  ) : (
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {unreleasedBooks.map((book) => (
-        <article class="flex flex-col space-y-2">
-          <!-- Release Date Badge -->
-          <div class="text-xs tracking-wider uppercase text-amber-800 font-medium">
-            Releasing: {book.releaseDate}
-          </div>
-
-          <!-- Book Title Linked to Post -->
-          <h3 class="text-xl font-bold font-serif text-gray-900 hover:text-amber-800 transition-colors">
-            <a href={`/blog/${book.slug}`}>
-              {book.title}
-            </a>
-          </h3>
-
-          <!-- Excerpt Text -->
-          <p class="text-sm text-gray-600 line-clamp-2">
-            {book.excerpt || book.description}
-          </p>
-        </article>
-      ))}
-    </div>
-  )}
-</section>
 
   <Newsletter />
 </BaseLayout>
