@@ -70,10 +70,6 @@ export const categories = [
   { slug: "author-interviews", name: "Author Interviews" },
 ];
 
-export const subcategories = [
-  { slug: "under-200-pages", name: "Under 200 pages" },
-];
-
 export const tags = [
   { slug: "writing", name: "Writing" },
   { slug: "childrens", name: "Childrens" },
