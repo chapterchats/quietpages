@@ -72,12 +72,10 @@ const sortedUpcoming = upcomingBooks.sort(
             </p>
           </div>
 
-       {/* 4. Author Credits & Reading Time matched line-for-line from your template */}
-<div class="mt-3 text-xs text-muted-foreground">
-  {post.data.author?.name} &middot; {post.data.readingTime || (post.render && (await post.render()).remarkPluginFrontmatter?.minutesRead)} min
-   </div>
-      </div>
-      </div>
+          <div class="mt-3 text-xs text-muted-foreground">
+            {post.data.author?.name || "Caroline D'cruz"} &middot; {post.data.readingTime || (post.body ? Math.max(1, Math.ceil(post.body.split(/\s+/).length / 200)) : '3')} min
+          </div>
+        </div>
       ))}
     </div>
   )}
