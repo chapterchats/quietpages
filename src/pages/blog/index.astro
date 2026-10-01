@@ -20,6 +20,12 @@ const categoryOptions = categories
 const tagOptions = tags
   .map((tag) => ({ ...tag, count: posts.filter((post) => post.tags.includes(tag.slug)).length }))
   .filter((tag) => tag.count > 0);
+const subcategoryOptions = [...new Set(posts.map(post => post.data.subcategory).filter(Boolean))]
+  .map(sub => ({
+    name: sub,
+    slug: sub.toLowerCase().replace(/ /g, '-'),
+    count: posts.filter(post => post.data.subcategory === sub).length
+  }));
 ---
 
 <BaseLayout
@@ -28,7 +34,10 @@ const tagOptions = tags
   canonical="/blog"
 >
   <div class="mx-auto max-w-4xl px-5 py-12" data-archive>
-    <Breadcrumbs items={[{ label: "Home", to: "/" }, { label: "Archive" }]} />
+    <Breadcrumbs items={[{ label: "Home", to: "/" }, { label: "Archive" }]} />,
+...(typeof category !== 'undefined' && category ? [{ label: category, to: `/blog?category=${category.toLowerCase()}` }] : []),
+  ...(typeof subcategory !== 'undefined' && subcategory ? [{ label: subcategory }] : [])
+]} />
     <h1 class="mt-4 font-serif text-4xl font-semibold sm:text-5xl">The archive</h1>
     <p class="mt-3 max-w-xl text-muted-foreground">
       Every book review, recommendation to help you find your next read. {posts.length} Book reviews,and more.
