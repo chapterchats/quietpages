@@ -5,7 +5,6 @@ import PostCard from "../components/PostCard.astro";
 import Newsletter from "../components/Newsletter.astro";
 import Icon from "../components/Icon.astro";
 import Bookhero from "../assets/Book-hero.jpg";
-import { getCollection } from 'astro:content';
 import {
   SITE,
   categories,
@@ -20,21 +19,6 @@ const featured = await featuredPost();
 const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
-// Filter upcoming books securely by looking at raw frontmatter
-const unreleasedBooks = allPosts.filter(post => {
-  const rawReleaseDate = post.data['releaseDate'] || post.id; 
-  if (!rawReleaseDate || rawReleaseDate === post.id) return false;
-  return new Date(rawReleaseDate) > today;
-});
-
-// Filter main feed reviews securely
-const publishedBooks = allPosts
-  .filter(post => {
-    const rawReleaseDate = post.data['releaseDate'] || post.id;
-    if (!rawReleaseDate || rawReleaseDate === post.id) return true;
-    return new Date(rawReleaseDate) <= today;
-  })
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
 <BaseLayout
@@ -204,29 +188,6 @@ const publishedBooks = allPosts
       </a>
     </div>
   </section>
-
-<!-- Upcoming Releases Section -->
-<section class="my-12 px-4 md:px-0">
-  <h2 class="text-2xl font-serif mb-6 text-gray-900">Upcoming Releases</h2>
-  
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    {unreleasedBooks.map((book) => (
-      <article class="flex flex-col space-y-2">
-        <div class="text-xs tracking-wider uppercase text-gray-500">
-          Releasing: {book.data.releaseDate}
-        </div>
-        <h3 class="text-xl font-bold font-serif text-gray-900 hover:text-amber-800">
-          <a href={`/blog/${book.slug}`}>
-            {book.data.title}
-          </a>
-        </h3>
-        <p class="text-sm text-gray-600 line-clamp-2">
-          {book.data.excerpt || book.data.description}
-        </p>
-      </article>
-    ))}
-  </div>
-</section>
 
   <Newsletter />
 </BaseLayout>
