@@ -19,6 +19,19 @@ const featured = await featuredPost();
 const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
+const today = new Date();
+
+// Filter for books whose publication date is in the future
+const upcomingBooks = latest.filter((post) => {
+  if (!post.data.bookPubDate) return false;
+  const releaseDate = new Date(post.data.bookPubDate);
+  return releaseDate > today;
+});
+
+// Sort them so the closest release date is first
+const sortedUpcoming = upcomingBooks.sort(
+  (a, b) => new Date(a.data.bookPubDate).getTime() - new Date(b.data.bookPubDate).getTime()
+);
 ---
 
 <BaseLayout
