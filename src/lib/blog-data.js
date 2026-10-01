@@ -69,30 +69,3 @@ export const formatDate = (iso) =>
     month: "long",
     day: "numeric",
   });
-
-export async function getUpcomingBooks() {
-  const allPosts = await posts();
-  const today = new Date();
-  
-  return allPosts.filter(post => {
-    const releaseDate = post['releaseDate'];
-    if (!releaseDate) return false;
-    
-    // Compare directly since your theme already made it a true date object
-    return releaseDate > today;
-  });
-}
-
-export async function getPublishedPosts() {
-  const allPosts = await posts();
-  const today = new Date();
-  
-  const filtered = allPosts.filter(post => {
-    const releaseDate = post['releaseDate'];
-    if (!releaseDate) return true;
-    
-    return releaseDate <= today;
-  });
-
-  return filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
