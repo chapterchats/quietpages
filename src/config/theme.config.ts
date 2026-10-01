@@ -64,7 +64,6 @@ export const authors = [
 
 export const categories = [
   { slug: "book-reviews", name: "Book Reviews" },
-  { slug: "under-200-pages", name: "Under 200 pages" },
   { slug: "blog", name: "Blog" },
   { slug: "recommendations", name: "Recommendations" },
   { slug: "author-interviews", name: "Author Interviews" },
