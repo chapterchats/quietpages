@@ -74,7 +74,7 @@ export async function getUpcomingBooks() {
   const today = new Date();
   
   return allPosts.filter(post => {
-    const rawRelease = post.data['releaseDate'];
+    const rawRelease = post['releaseDate'];
     if (!rawRelease) return false;
     return new Date(rawRelease) > today;
   });
@@ -84,12 +84,13 @@ export async function getPublishedPosts() {
   const allPosts = await posts();
   const today = new Date();
   
-  return allPosts
-    .filter(post => {
-      const rawRelease = post.data['releaseDate'];
-      if (!rawRelease) return true;
-      return new Date(rawRelease) <= today;
-    })
-    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  const filtered = allPosts.filter(post => {
+    const rawRelease = post['releaseDate'];
+    if (!rawRelease) return true;
+    return new Date(rawRelease) <= today;
+  });
+
+  return filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
+
 
