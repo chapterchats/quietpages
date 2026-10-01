@@ -27,7 +27,6 @@ const upcomingBooks = rawBlogPosts.filter((post) => {
 const sortedUpcoming = upcomingBooks.sort(
   (a, b) => new Date(a.data.bookPubDate).getTime() - new Date(b.data.bookPubDate).getTime()
 );
-const sortedUpcoming = sortedUpcomingRaw.map(normalizePost);
 
 ---
 
