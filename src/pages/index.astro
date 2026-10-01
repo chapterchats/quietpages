@@ -208,31 +208,28 @@ const publishedBooks = allPosts
     </div>
   </section>
 
+<!-- Upcoming Releases Section -->
 <section class="my-12 px-4 md:px-0">
   <h2 class="text-2xl font-serif mb-6 text-gray-900">Upcoming Releases</h2>
   
-  {unreleasedBooks && unreleasedBooks.length === 0 ? (
-    <p class="text-gray-500 italic">No unreleased books on my radar right now!</p>
-  ) : (
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {unreleasedBooks && unreleasedBooks.map((book) => (
-        <article class="flex flex-col space-y-2">
-          <div class="text-xs tracking-wider uppercase text-gray-500">
-            Releasing: {book.data.releaseDate}
-          </div>
-          <h3 class="text-xl font-bold font-serif text-gray-900 hover:text-amber-800">
-            <a href={`/blog/${book.slug}`}>
-              {book.data.title}
-            </a>
-          </h3>
-          <p class="text-sm text-gray-600 line-clamp-2">
-            {book.data.excerpt || book.data.description}
-          </p>
-        </article>
-      ))}
-    </div>
-  )}
-</section> 
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {unreleasedBooks.map((book) => (
+      <article class="flex flex-col space-y-2">
+        <div class="text-xs tracking-wider uppercase text-gray-500">
+          Releasing: {book.data.releaseDate}
+        </div>
+        <h3 class="text-xl font-bold font-serif text-gray-900 hover:text-amber-800">
+          <a href={`/blog/${book.slug}`}>
+            {book.data.title}
+          </a>
+        </h3>
+        <p class="text-sm text-gray-600 line-clamp-2">
+          {book.data.excerpt || book.data.description}
+        </p>
+      </article>
+    ))}
+  </div>
+</section>
 
   <Newsletter />
 </BaseLayout>
