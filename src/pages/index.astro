@@ -5,6 +5,7 @@ import PostCard from "../components/PostCard.astro";
 import Newsletter from "../components/Newsletter.astro";
 import Icon from "../components/Icon.astro";
 import Bookhero from "../assets/Book-hero.jpg";
+import { getCollection } from 'astro:content';
 import {
   SITE,
   categories,
@@ -19,11 +20,26 @@ const featured = await featuredPost();
 const featuredAuthor = getAuthor(featured.author);
 const featuredCategory = getCategory(featured.category);
 const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slug);
-const unreleasedBooks = (await sortedPosts()).filter((post) => {
-  if (!post?.data?.releaseDate) return false;
-  // This checks if the release date is today or in the future
-  return new Date(post.data.releaseDate).setHours(23,59,59,999) >= new Date().getTime();
+// 1. Fetch all your book posts
+const allPosts = await getCollection('blog');
+
+// 2. Get the current date at the time Vercel builds your site
+const today = new Date();
+
+// 3. Filter for unreleased books (Release date is in the FUTURE)
+const unreleasedBooks = allPosts.filter(post => {
+  const releaseDate = new Date(post.data.pubDate);
+  return releaseDate > today;
 });
+
+// 4. Filter for published books (Release date is TODAY or in the PAST)
+// This also sorts them so the newest releases show up first
+const publishedBooks = allPosts
+  .filter(post => {
+    const releaseDate = new Date(post.data.pubDate);
+    return releaseDate <= today;
+  })
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 ---
 
 <BaseLayout
@@ -194,23 +210,26 @@ const unreleasedBooks = (await sortedPosts()).filter((post) => {
     </div>
   </section>
 
-{unreleasedBooks && unreleasedBooks.length > 0 && (
-  <section class="max-w-6xl mx-auto px-4 py-12 border-t border-border/60">
-    <div class="mb-8">
-      <h2 class="text-2xl font-bold tracking-tight text-heading">Reviewed but Unreleased ⏳</h2>
-      <p class="text-muted text-sm mt-1">Books I've read early! These reviews will automatically open on their launch day.</p>
-    </div>
-    
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {unreleasedBooks.map((book) => (
-        <div class="p-6 bg-card rounded-lg border border-border/40 shadow-sm opacity-90 border-l-4 border-l-amber-500">
-          <h3 class="font-semibold text-lg text-heading line-clamp-2">{book.data.title}</h3>
-          <p class="text-xs text-muted mt-2">{book.data.excerpt}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-)}
+<section class="my-12 px-4 md:px-0">
+  <h2 class="text-2xl font-serif mb-6 text-gray-900">Upcoming Releases</h2>
+  <div class="grid gap-6">
+    {unreleasedBooks.map(book => (
+      <article>
+        <a href={`/blog/${book.slug}`} class="text-amber-800 hover:underline font-medium">
+          {book.data.title}
+        </a>
+        <p class="text-sm text-gray-500">Releasing: {new Date(book.data.pubDate).toLocaleDateString()}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<!-- Your Regular Blog Feed Section -->
+<section class="my-12 px-4 md:px-0">
+  <h2 class="text-2xl font-serif mb-6 text-gray-900">Recent Reviews & Posts</h2>
+  <!-- Loop through publishedBooks here -->
+</section>
+
 
   <Newsletter />
 </BaseLayout>
