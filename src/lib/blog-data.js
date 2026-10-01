@@ -72,34 +72,27 @@ export const formatDate = (iso) =>
 
 export async function getUpcomingBooks() {
   const allPosts = await posts();
-  // Get the numerical timestamp for today
-  const todayTime = new Date().getTime();
+  const today = new Date();
   
   return allPosts.filter(post => {
-    const rawRelease = post['releaseDate'];
-    if (!rawRelease) return false;
+    const releaseDate = post['releaseDate'];
+    if (!releaseDate) return false;
     
-    // Parse your string text date manually into a comparable number
-    const releaseTime = new Date(rawRelease).getTime();
-    return releaseTime > todayTime;
+    // Compare directly since your theme already made it a true date object
+    return releaseDate > today;
   });
 }
 
 export async function getPublishedPosts() {
   const allPosts = await posts();
-  const todayTime = new Date().getTime();
+  const today = new Date();
   
   const filtered = allPosts.filter(post => {
-    const rawRelease = post['releaseDate'];
-    if (!rawRelease) return true;
+    const releaseDate = post['releaseDate'];
+    if (!releaseDate) return true;
     
-    const releaseTime = new Date(rawRelease).getTime();
-    return releaseTime <= todayTime;
+    return releaseDate <= today;
   });
 
-  // Sort them using clean timestamp values
   return filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
-
-
-
