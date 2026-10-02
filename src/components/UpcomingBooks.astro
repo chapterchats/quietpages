@@ -44,7 +44,7 @@ const sortedUpcoming = upcomingBooks.sort(
         <div class="flex flex-col gap-3 group">
           {/* 1. The Cover Image Container */}
           {post.data.thumbnail && (
-            <a href={`/blog/${post.slug || post.id}/`} class="overflow-hidden rounded-sm block aspect-[16/9] bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800">
+            <a href={`/blog/${post.slug || post.id}/`} class="overflow-hidden rounded-md block aspect-[16/9] bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800">
               <Image
                 src={post.data.thumbnail} 
                 alt={post.data.thumbnailAlt || post.data.title}
